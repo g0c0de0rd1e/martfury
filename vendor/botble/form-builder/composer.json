@@ -1,0 +1,22 @@
+{
+    "name": "botble/form-builder",
+    "description": "Laravel form builder - symfony like",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider"
+            ],
+            "aliases": {
+                "FormBuilder": "Kris\\LaravelFormBuilder\\Facades\\FormBuilder"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Kris\\LaravelFormBuilder\\": "src/"
+        },
+        "files": [
+            "helpers/helpers.php"
+        ]
+    }
+}

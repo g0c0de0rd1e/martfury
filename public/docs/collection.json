@@ -1,0 +1,942 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/martfury.test"
+        }
+    ],
+    "info": {
+        "name": "Your App",
+        "_postman_id": "56e0cf3a-c5a1-4a36-8c5e-500071160802",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"quia\",\"last_name\":\"ullam\",\"email\":\"ernestine93@example.org\",\"password\":\"12f5M-2LD\",\"phone\":\"atque\",\"password_confirmation\":\"enim\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"error\": false,\n\"data\": null,\n\"message\": \"Registered successfully! We emailed you to verify your account!\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"message\": \"The given data was invalid.\",\n\"errors\": {\n    \"first_name\": [\n        \"The first name field is required.\"\n    ],\n    \"last_name\": [\n        \"The last name field is required.\"\n    ],\n    \"email\": [\n        \"The email field is required.\"\n    ],\n    \"password\": [\n        \"The password field is required.\"\n    ]\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"e.g: abc@example.com\",\"password\":\";^1kn.DFPdc?Ge3}ZR;\",\"login\":\"modi\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"error\": false,\n\"data\": {\n   \"token\": \"1|aF5s7p3xxx1lVL8hkSrPN72m4wPVpTvTs...\"\n},\n\"message\": null\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Forgot password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/password\/forgot",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/password\/forgot"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"eldridge.fay@example.com\"}"
+                        },
+                        "description": "Send a reset link to the given user.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Resend email verification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/resend-verify-account-email",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/resend-verify-account-email"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"juvenal06@example.org\"}"
+                        },
+                        "description": "Resend the email verification notification.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/logout"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Blog",
+            "description": "",
+            "item": [
+                {
+                    "name": "Search post",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/search",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/search"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"q\":\"aut\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "51"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"No results found, please try with different keywords.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List posts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/posts",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/posts"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "50"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"4 Expert Tips On How To Choose The Right Men\\u2019s Wallet\",\"slug\":\"4-expert-tips-on-how-to-choose-the-right-mens-wallet\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/1.jpg\",\"categories\":[{\"id\":1,\"name\":\"Ecommerce\",\"slug\":\"ecommerce\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/ecommerce\",\"description\":\"Qui facere pariatur commodi deleniti quaerat. Vel veniam nesciunt minus distinctio. Vitae qui tempora quos temporibus distinctio.\"},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":2,\"name\":\"Sexy Clutches: How to Buy & Wear a Designer Clutch Bag\",\"slug\":\"sexy-clutches-how-to-buy-wear-a-designer-clutch-bag\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/2.jpg\",\"categories\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":3,\"name\":\"The Top 2020 Handbag Trends to Know\",\"slug\":\"the-top-2020-handbag-trends-to-know\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/3.jpg\",\"categories\":[{\"id\":1,\"name\":\"Ecommerce\",\"slug\":\"ecommerce\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/ecommerce\",\"description\":\"Qui facere pariatur commodi deleniti quaerat. Vel veniam nesciunt minus distinctio. Vitae qui tempora quos temporibus distinctio.\"},{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":4,\"name\":\"How to Match the Color of Your Handbag With an Outfit\",\"slug\":\"how-to-match-the-color-of-your-handbag-with-an-outfit\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/4.jpg\",\"categories\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":5,\"name\":\"How to Care for Leather Bags\",\"slug\":\"how-to-care-for-leather-bags\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/5.jpg\",\"categories\":[{\"id\":1,\"name\":\"Ecommerce\",\"slug\":\"ecommerce\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/ecommerce\",\"description\":\"Qui facere pariatur commodi deleniti quaerat. Vel veniam nesciunt minus distinctio. Vitae qui tempora quos temporibus distinctio.\"},{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":6,\"name\":\"We're Crushing Hard on Summer's 10 Biggest Bag Trends\",\"slug\":\"were-crushing-hard-on-summers-10-biggest-bag-trends\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/6.jpg\",\"categories\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":7,\"name\":\"Essential Qualities of Highly Successful Music\",\"slug\":\"essential-qualities-of-highly-successful-music\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/7.jpg\",\"categories\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":8,\"name\":\"9 Things I Love About Shaving My Head\",\"slug\":\"9-things-i-love-about-shaving-my-head\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/8.jpg\",\"categories\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":9,\"name\":\"Why Teamwork Really Makes The Dream Work\",\"slug\":\"why-teamwork-really-makes-the-dream-work\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/9.jpg\",\"categories\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"},{\"id\":10,\"name\":\"The World Caters to Average People\",\"slug\":\"the-world-caters-to-average-people\",\"description\":\"You should pay more attention when you choose your wallets. There are a lot of them on the market with the different designs and styles. When you choose carefully, you would be able to buy a wallet that is catered to your needs. Not to mention that it will help to enhance your style significantly.\",\"image\":\"https:\\\/\\\/martfury.test\\\/storage\\\/news\\\/10.jpg\",\"categories\":[{\"id\":1,\"name\":\"Ecommerce\",\"slug\":\"ecommerce\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/ecommerce\",\"description\":\"Qui facere pariatur commodi deleniti quaerat. Vel veniam nesciunt minus distinctio. Vitae qui tempora quos temporibus distinctio.\"},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\"}],\"tags\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"created_at\":\"2024-04-11T08:25:48.000000Z\",\"updated_at\":\"2024-04-11T08:25:48.000000Z\"}],\"links\":{\"first\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts?page=1\",\"last\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts?page=2\",\"prev\":null,\"next\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\",\"per_page\":10,\"to\":10,\"total\":11},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "49"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\",\"children\":[],\"parent\":{\"id\":null,\"name\":\"\",\"slug\":\"\",\"url\":\"https:\\\/\\\/martfury.test\",\"description\":\"\"}},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\",\"children\":[],\"parent\":{\"id\":null,\"name\":\"\",\"slug\":\"\",\"url\":\"https:\\\/\\\/martfury.test\",\"description\":\"\"}},{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\",\"children\":[],\"parent\":{\"id\":null,\"name\":\"\",\"slug\":\"\",\"url\":\"https:\\\/\\\/martfury.test\",\"description\":\"\"}},{\"id\":1,\"name\":\"Ecommerce\",\"slug\":\"ecommerce\",\"description\":\"Qui facere pariatur commodi deleniti quaerat. Vel veniam nesciunt minus distinctio. Vitae qui tempora quos temporibus distinctio.\",\"children\":[],\"parent\":{\"id\":null,\"name\":\"\",\"slug\":\"\",\"url\":\"https:\\\/\\\/martfury.test\",\"description\":\"\"}}],\"links\":{\"first\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories?page=1\",\"last\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories\",\"per_page\":10,\"to\":4,\"total\":4},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List tags",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/tags",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/tags"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "48"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"name\":\"General\",\"slug\":\"general\",\"description\":\"\"},{\"id\":2,\"name\":\"Design\",\"slug\":\"design\",\"description\":\"\"},{\"id\":3,\"name\":\"Fashion\",\"slug\":\"fashion\",\"description\":\"\"},{\"id\":4,\"name\":\"Branding\",\"slug\":\"branding\",\"description\":\"\"},{\"id\":5,\"name\":\"Modern\",\"slug\":\"modern\",\"description\":\"\"}],\"links\":{\"first\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/tags?page=1\",\"last\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/tags?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/tags?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/tags\",\"per_page\":10,\"to\":5,\"total\":5},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Filters posts",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/posts\/filters",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "3",
+                                    "description": "Current page of the collection. Default: 1",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "9",
+                                    "description": "Maximum number of items to be returned in result set.Default: 10",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "voluptatum",
+                                    "description": "Limit results to those matching a string.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "after",
+                                    "value": "rerum",
+                                    "description": "Limit response to posts published after a given ISO8601 compliant date.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "author",
+                                    "value": "quos",
+                                    "description": "Limit result set to posts assigned to specific authors.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "author_exclude",
+                                    "value": "nobis",
+                                    "description": "Ensure result set excludes posts assigned to specific authors.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "before",
+                                    "value": "eligendi",
+                                    "description": "Limit response to posts published before a given ISO8601 compliant date.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "exclude",
+                                    "value": "dolorem",
+                                    "description": "Ensure result set excludes specific IDs.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "include",
+                                    "value": "et",
+                                    "description": "Limit result set to specific IDs.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order",
+                                    "value": "in",
+                                    "description": "Order sort attribute ascending or descending. Default: desc .One of: asc, desc",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "order_by",
+                                    "value": "doloribus",
+                                    "description": "Sort collection by object attribute. Default: updated_at. One of: author, created_at, updated_at, id,  slug, title",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "categories",
+                                    "value": "ea",
+                                    "description": "Limit result set to all items that have the specified term assigned in the categories taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "categories_exclude",
+                                    "value": "enim",
+                                    "description": "Limit result set to all items except those that have the specified term assigned in the categories taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "tags",
+                                    "value": "veritatis",
+                                    "description": "Limit result set to all items that have the specified term assigned in the tags taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "tags_exclude",
+                                    "value": "rerum",
+                                    "description": "Limit result set to all items except those that have the specified term assigned in the tags taxonomy.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "featured",
+                                    "value": "incidunt",
+                                    "description": "Limit result set to items that are sticky.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/posts\/filters?page=3&per_page=9&search=voluptatum&after=rerum&author=quos&author_exclude=nobis&before=eligendi&exclude=dolorem&include=et&order=in&order_by=doloribus&categories=ea&categories_exclude=enim&tags=veritatis&tags_exclude=rerum&featured=incidunt"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "47"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[],\"links\":{\"first\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\\\/filters?page=1\",\"last\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\\\/filters?page=1\",\"prev\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\\\/filters?page=2\",\"next\":null},\"meta\":{\"current_page\":3,\"from\":null,\"last_page\":1,\"links\":[{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\\\/filters?page=2\",\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\\\/filters?page=1\",\"label\":\"1\",\"active\":false},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/posts\\\/filters\",\"per_page\":9,\"to\":null,\"total\":0},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get post by slug",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/posts\/:slug",
+                            "query": [
+                                {
+                                    "key": "slug",
+                                    "value": "non",
+                                    "description": "Find by slug of post.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/posts\/:slug?slug=non",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "deleniti",
+                                    "description": "The slug of the post."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "46"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Filters categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/filters",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/filters"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "45"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":2,\"name\":\"Fashion\",\"slug\":\"fashion\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/fashion\",\"description\":\"Fugit ducimus consequatur laboriosam odit natus sed adipisci. Maxime sed sunt sed minima. Quos qui doloribus soluta recusandae dolorum.\"},{\"id\":3,\"name\":\"Electronic\",\"slug\":\"electronic\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/electronic\",\"description\":\"Numquam nostrum illo dolorem possimus sit sit cumque. Voluptates iste dolore cum. Eos et et aut a molestiae qui tempora temporibus.\"},{\"id\":1,\"name\":\"Ecommerce\",\"slug\":\"ecommerce\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/ecommerce\",\"description\":\"Qui facere pariatur commodi deleniti quaerat. Vel veniam nesciunt minus distinctio. Vitae qui tempora quos temporibus distinctio.\"},{\"id\":4,\"name\":\"Commercial\",\"slug\":\"commercial\",\"url\":\"https:\\\/\\\/martfury.test\\\/blog\\\/commercial\",\"description\":\"Quo sapiente optio voluptatem. Est voluptas adipisci voluptas facere qui distinctio eos. Tempore dolorem repellendus iusto sit. Deleniti accusantium quo quia non dolorem doloremque.\"}],\"links\":{\"first\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories\\\/filters?page=1\",\"last\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories\\\/filters?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories\\\/filters?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"https:\\\/\\\/martfury.test\\\/api\\\/v1\\\/categories\\\/filters\",\"per_page\":10,\"to\":4,\"total\":4},\"error\":false,\"message\":null}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get category by slug",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/:slug",
+                            "query": [
+                                {
+                                    "key": "slug",
+                                    "value": "et",
+                                    "description": "Find by slug of category.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/:slug?slug=et",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "esse",
+                                    "description": "The slug of the category."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "44"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Not found\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Profile",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get the user profile information.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"error\":true,\"data\":null,\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/me"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"ea\",\"last_name\":\"quia\",\"phone\":\"corporis\",\"dob\":\"nostrum\",\"gender\":\"quia\",\"description\":\"Itaque fugiat aperiam odit velit explicabo temporibus.\",\"email\":\"crona.elijah@example.org\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Avatar",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/update\/avatar",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/update\/avatar"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "avatar",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/update\/password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/update\/password"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"sQ\\\\w}&\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

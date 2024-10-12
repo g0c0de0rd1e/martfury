@@ -1,0 +1,72 @@
+<?php
+
+namespace {Module}\Http\Controllers;
+
+use Botble\Base\Http\Actions\DeleteResourceAction;
+use {Module}\Http\Requests\{Name}Request;
+use {Module}\Models\{Name};
+use Botble\Base\Facades\PageTitle;
+use Botble\Base\Http\Controllers\BaseController;
+use {Module}\Tables\{Name}Table;
+use {Module}\Forms\{Name}Form;
+
+class {Name}Controller extends BaseController
+{
+    public function __construct()
+    {
+        $this
+            ->breadcrumb()
+            ->add(trans(trans('{types}/{-module}::{-name}.name')), route('{-name}.index'));
+    }
+
+    public function index({Name}Table $table)
+    {
+        $this->pageTitle(trans('{types}/{-module}::{-name}.name'));
+
+        return $table->renderTable();
+    }
+
+    public function create()
+    {
+        $this->pageTitle(trans('{types}/{-module}::{-name}.create'));
+
+        return {Name}Form::create()->renderForm();
+    }
+
+    public function store({Name}Request $request)
+    {
+        $form = {Name}Form::create()->setRequest($request);
+
+        $form->save();
+
+        return $this
+            ->httpResponse()
+            ->setPreviousUrl(route('{-name}.index'))
+            ->setNextUrl(route('{-name}.edit', $form->getModel()->getKey()))
+            ->setMessage(trans('core/base::notices.create_success_message'));
+    }
+
+    public function edit({Name} ${+name})
+    {
+        $this->pageTitle(trans('core/base::forms.edit_item', ['name' => ${+name}->name]));
+
+        return {Name}Form::createFromModel(${+name})->renderForm();
+    }
+
+    public function update({Name} ${+name}, {Name}Request $request)
+    {
+        {Name}Form::createFromModel(${+name})
+            ->setRequest($request)
+            ->save();
+
+        return $this
+            ->httpResponse()
+            ->setPreviousUrl(route('{-name}.index'))
+            ->setMessage(trans('core/base::notices.update_success_message'));
+    }
+
+    public function destroy({Name} ${+name})
+    {
+        return DeleteResourceAction::make(${+name});
+    }
+}
