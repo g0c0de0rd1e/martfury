@@ -260,4 +260,13 @@ class ProductController extends BaseController
             ->httpResponse()
             ->withUpdatedSuccessMessage();
     }
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        $user = Auth::guard('customer')->user();
+        $customer = Customer::where('id', $product->approved_by)->first();
+
+        return view('ecommerce.product', compact('product', 'user', 'customer'));
+    }
+
 }

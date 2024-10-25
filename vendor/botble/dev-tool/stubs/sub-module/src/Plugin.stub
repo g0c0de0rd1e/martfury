@@ -1,3 +1,0 @@
-// Add into function remove()
-Schema::dropIfExists('{names}');
-Schema::dropIfExists('{names}_translations');

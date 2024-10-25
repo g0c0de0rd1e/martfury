@@ -36,7 +36,30 @@ class MessageController extends BaseController
 
         return MarketplaceHelper::view('vendor-dashboard.messages.show', compact('message'));
     }
-
+    
+    public function send(Request $request) {
+        if (!MarketplaceHelper::isEnabledMessagingSystem()) {
+            abort(404);
+        }
+    
+        $validatedData = $request->validate([
+            'customer_id' =>    'required|exists:customers,id',
+            'name'        =>    'required|string|max:255',
+            'email'       =>    'required|string|email|max:255',
+            'content'     =>    'required|string|max:1000',
+        ]);
+    
+        $message = new Message();
+        $message->store_id = auth('customer')->user()->store->id;
+        $message->customer_id = $validatedData['customer_id'];
+        $message->name = $validatedData['name'];
+        $message->email = $validatedData['email'];
+        $message->content = $validatedData['content'];
+        $message->save();
+    
+        return response()->json(['status' => 'Message sent successfully'], 200);
+    }
+    
     public function destroy(string $id)
     {
         if (! MarketplaceHelper::isEnabledMessagingSystem()) {

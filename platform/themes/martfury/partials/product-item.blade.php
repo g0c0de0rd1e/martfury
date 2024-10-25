@@ -23,9 +23,9 @@
             @endif
         @endif
         <ul class="ps-product__actions">
-            @if (EcommerceHelper::isCartEnabled())
+            <!-- @if (EcommerceHelper::isCartEnabled())
                 <li><a class="add-to-cart-button" data-id="{{ $product->id }}" href="#" data-url="{{ route('public.cart.add-to-cart') }}" title="{{ __('Add To Cart') }}"><i class="icon-bag2"></i></a></li>
-            @endif
+            @endif -->
             <li><a class="js-quick-view-button" href="#" data-url="{{ route('public.ajax.quick-view', $product->id) }}" title="{{ __('Quick View') }}"><i class="icon-eye"></i></a></li>
             @if (EcommerceHelper::isWishlistEnabled())
                 <li><a class="js-add-to-wishlist-button" href="#" data-url="{{ route('public.wishlist.add', $product->id) }}" title="{{ __('Add to Wishlist') }}"><i class="icon-heart"></i></a></li>

@@ -1,4 +1,0 @@
-// Add below this line: AdminHelper::registerRoutes(function () {
-Route::group(['prefix' => '{-names}', 'as' => '{-name}.'], function () {
-    Route::resource('', '{Name}Controller')->parameters(['' => '{-name}']);
-});

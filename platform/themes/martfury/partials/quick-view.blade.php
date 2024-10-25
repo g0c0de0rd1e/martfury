@@ -50,12 +50,12 @@
             <div class="ps-product__shopping">
                 <input type="hidden" name="id" class="hidden-product-id" value="{{ ($product->is_variation || !$product->defaultVariation->product_id) ? $product->id : $product->defaultVariation->product_id }}"/>
                 <input type="hidden" name="qty" value="1">
-                @if (EcommerceHelper::isCartEnabled())
-                    <button class="ps-btn ps-btn--black" type="submit">{{ __('Add to cart') }}</button>
+                <!-- @if (EcommerceHelper::isCartEnabled())
+                    <button class="ps-btn ps-btn--black" type="submit">{{ __('Add to cart') }}</button> -->
                     @if (EcommerceHelper::isQuickBuyButtonEnabled())
                         <button class="ps-btn" type="submit" name="checkout">{{ __('Buy Now') }}</button>
                     @endif
-                @endif
+                <!-- @endif -->
                 <div class="ps-product__actions">
                     @if (EcommerceHelper::isWishlistEnabled())
                         <a class="js-add-to-wishlist-button" href="#" data-url="{{ route('public.wishlist.add', $product->id) }}"><i class="icon-heart"></i></a>

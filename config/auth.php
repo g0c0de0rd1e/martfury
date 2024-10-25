@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+        'vendor' => [
+            'driver' => 'session',
+            'provider' => 'vendors',
+        ],
+
     ],
 
     /*
@@ -64,7 +74,14 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => Botble\Ecommerce\Models\Customer::class,
+        ],
+        'vendors' => [
+            'driver' => 'eloquent',
+            'model' => Botble\Marketplace\Models\VendorInfo::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

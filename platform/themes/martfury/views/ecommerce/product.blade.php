@@ -146,8 +146,8 @@
                                         </figure>
                                         <input type="hidden" name="id" class="hidden-product-id" value="{{ ($product->is_variation || !$product->defaultVariation->product_id) ? $product->id : $product->defaultVariation->product_id }}"/>
 
-                                        @if (EcommerceHelper::isCartEnabled())
-                                            <button class="ps-btn ps-btn--black add-to-cart-button @if ($product->isOutOfStock()) btn-disabled @endif" type="submit" name="add_to_cart" value="1" @if ($product->isOutOfStock()) disabled @endif>{{ __('Add to cart') }}</button>
+                                        <!-- @if (EcommerceHelper::isCartEnabled())
+                                            <button class="ps-btn ps-btn--black add-to-cart-button @if ($product->isOutOfStock()) btn-disabled @endif" type="submit" name="add_to_cart" value="1" @if ($product->isOutOfStock()) disabled @endif>{{ __('Add to cart') }}</button> -->
                                             @if (EcommerceHelper::isQuickBuyButtonEnabled())
                                                 <button class="ps-btn add-to-cart-button @if ($product->isOutOfStock()) btn-disabled @endif" type="submit" name="checkout" value="1" @if ($product->isOutOfStock()) disabled @endif>{{ __('Buy Now') }}</button>
                                             @endif
@@ -159,6 +159,9 @@
                                             @if (EcommerceHelper::isCompareEnabled())
                                                 <a class="js-add-to-compare-button" href="#" data-url="{{ route('public.compare.add', $product->id) }}" title="{{ __('Compare') }}"><i class="icon-chart-bars"></i></a>
                                             @endif
+                                            <a href="{{ route('chat.index', ['productId' => $product->id, 'storeId' => $product->store_id, 'userId' => Auth::guard('customer')->id()]) }}">
+                                                <strong>{{ $product->store->name }}</strong>
+                                            </a>
                                         </div>
                                     </div>
                                 </form>

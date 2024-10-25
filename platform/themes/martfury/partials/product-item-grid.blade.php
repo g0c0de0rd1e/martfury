@@ -48,9 +48,9 @@
             {!! apply_filters('ecommerce_before_product_price_in_listing', null, $product) !!}
             <p class="ps-product__price @if ($product->front_sale_price !== $product->price) sale @endif">{{ format_price($product->front_sale_price_with_taxes) }} @if ($product->front_sale_price !== $product->price) <del>{{ format_price($product->price_with_taxes) }} </del> @endif</p>
             {!! apply_filters('ecommerce_after_product_price_in_listing', null, $product) !!}
-            @if (EcommerceHelper::isCartEnabled())
+            <!-- @if (EcommerceHelper::isCartEnabled())
                 <a class="ps-btn add-to-cart-button" data-id="{{ $product->id }}" href="#" data-url="{{ route('public.cart.add-to-cart') }}">{{ __('Add to cart') }}</a>
-            @endif
+            @endif -->
             <ul class="ps-product__actions">
                 @if (EcommerceHelper::isWishlistEnabled())
                     <li><a class="js-add-to-wishlist-button" href="#" data-url="{{ route('public.wishlist.add', $product->id) }}"><i class="icon-heart"></i> {{ __('Wishlist') }}</a></li>

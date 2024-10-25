@@ -20,7 +20,7 @@
             <div class="bb-product-details-action-item-wrapper d-flex gap-3">
                 @include(EcommerceHelper::viewPath('includes.product-quantity'))
 
-                @if (EcommerceHelper::isCartEnabled())
+                <!-- @if (EcommerceHelper::isCartEnabled())
                     <div class="bb-product-details-add-to-cart w-100">
                         <button
                             type="submit"
@@ -33,7 +33,7 @@
                             {{ __('Add To Cart') }}
                         </button>
                     </div>
-                @endif
+                @endif -->
             </div>
         </div>
     </x-core::form>

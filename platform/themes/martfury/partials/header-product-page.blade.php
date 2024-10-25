@@ -22,9 +22,9 @@
                                 <del>{{ format_price($product->price_with_taxes) }}</del>
                             @endif
                         </span>
-                        @if (EcommerceHelper::isCartEnabled())
+                        <!-- @if (EcommerceHelper::isCartEnabled())
                             <button class="ps-btn add-to-cart-button @if ($product->isOutOfStock()) btn-disabled @endif" type="button" name="add_to_cart" value="1">{{ __('Add to cart') }}</button>
-                        @endif
+                        @endif -->
                     </div>
                 </div>
             </article>

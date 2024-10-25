@@ -21,7 +21,7 @@
             @endif
 
             <div class="product-add-cart-btn-large-wrapper">
-                @if (EcommerceHelper::isCartEnabled())
+                <!-- @if (EcommerceHelper::isCartEnabled())
                     <button
                         type="button"
                         class="btn btn-primary bb-btn-product-actions-icon"
@@ -42,7 +42,7 @@
                             @else
                                 {{ __('Add To Cart') }}
                             @endif
-                </span>
+                </span> -->
                     </button>
                 @endif
             </div>

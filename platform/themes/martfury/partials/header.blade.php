@@ -59,14 +59,14 @@
                                 @if (EcommerceHelper::isWishlistEnabled())
                                     <a class="header__extra btn-wishlist" href="{{ route('public.wishlist') }}"><i class="icon-heart"></i><span><i>{{ !auth('customer')->check() ? Cart::instance('wishlist')->count() : auth('customer')->user()->wishlist()->count() }}</i></span></a>
                                 @endif
-                                @if (EcommerceHelper::isCartEnabled())
+                                <!-- @if (EcommerceHelper::isCartEnabled())
                                     <div class="ps-cart--mini">
                                         <a class="header__extra btn-shopping-cart" href="{{ route('public.cart') }}"><i class="icon-bag2"></i><span><i>{{ Cart::instance('cart')->count() }}</i></span></a>
                                         <div class="ps-cart--mobile">
                                             {!! Theme::partial('cart') !!}
                                         </div>
                                     </div>
-                                @endif
+                                @endif -->
                                 {!! apply_filters('after_theme_header_actions', null) !!}
                                 <div class="ps-block--user-header">
                                     <div class="ps-block__left"><i class="icon-user"></i></div>

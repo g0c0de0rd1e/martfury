@@ -39,7 +39,7 @@
                                         </div>
                                     </td>
                                     <td class="price" data-label="{{ __('Price') }}"><span>{{ format_price($product->front_sale_price_with_taxes) }}</span> @if ($product->front_sale_price !== $product->price) &nbsp;<del>{{ format_price($product->price_with_taxes) }} </del> @endif</td>
-                                    @if (EcommerceHelper::isCartEnabled())
+                                    <!-- @if (EcommerceHelper::isCartEnabled())
                                         <td data-label="{{ __('Action') }}">
                                             <div class="ps-product p-0 border-0">
                                                 <div class="ps-product__actions mw-100 justify-content-end">
@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    @endif
+                                    @endif -->
                                 </tr>
                             @endforeach
                         </tbody>

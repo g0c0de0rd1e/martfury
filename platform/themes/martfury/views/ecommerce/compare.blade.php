@@ -120,7 +120,7 @@
                                 @endif
                             @endforeach
 
-                            @if (EcommerceHelper::isCartEnabled())
+                            <!-- @if (EcommerceHelper::isCartEnabled())
                                 <tr>
                                     <td class="heading"></td>
                                     @foreach($products as $product)
@@ -133,7 +133,7 @@
                                         </td>
                                     @endforeach
                                 </tr>
-                            @endif
+                            @endif -->
                         </tbody>
                     </table>
                 </div>

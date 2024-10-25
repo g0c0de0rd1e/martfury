@@ -106,7 +106,11 @@ Route::group([
 
             Route::match(['GET', 'POST'], 'messages', [MessageController::class, 'index'])->name('messages.index');
             Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+            Route::post('/messages/send', [MessageController::class, 'send'])->name('messages.send');
             Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+            Route::get('/chats', function () {
+                return view('chats');
+            })->name('chats');
 
             if (EcommerceHelper::isReviewEnabled()) {
                 Route::resource('reviews', 'ReviewController')
