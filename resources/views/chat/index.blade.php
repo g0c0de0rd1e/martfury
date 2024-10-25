@@ -7,20 +7,19 @@
             @if ($chats->count())
                 <div class="table-responsive chat-window">
                     @foreach ($chats as $chat)
-                    <div class="chat-message {{ $chat->user_id == $user->id ? 'chat-message-right' : 'chat-message-left' }}">
-                        <div class="message-content">
-                            <a href="#">{{ $chat->user->name }}</a>
-                            <p>{{ $chat->message }}</p>
-                            @if ($chat->file_path)
-                                <div class="image-container">
-                                    <img src="{{ asset('storage/' . $chat->file_path) }}" alt="Изображение из сообщения" class="chat-image">
-                                    <div class="zoom-icon"></div>
-                                </div>
-                            @endif
-                            <span class="message-time">{{ $chat->created_at->format('d M, Y H:i') }}</span>
+                        <div class="chat-message {{ $chat->sender_id == $user->id ? 'chat-message-right' : 'chat-message-left' }}">
+                            <div class="message-content">
+                                <p>{{ $chat->message }}</p>
+                                @if ($chat->file_path)
+                                    <div class="image-container">
+                                        <img src="{{ asset('storage/' . $chat->file_path) }}" alt="Изображение из сообщения" class="chat-image">
+                                        <div class="zoom-icon"></div>
+                                    </div>
+                                @endif
+                                <span class="message-time">{{ $chat->created_at->format('d M, Y H:i') }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div id="zoomedImageContainer" style="display: none;"></div>
+                        <div id="zoomedImageContainer" style="display: none;"></div>
                     @endforeach
                 </div>
                 <div class="ps-pagination">
@@ -34,18 +33,15 @@
                     @csrf
                     <div class="input-group">
                         <textarea name="message" id="message" rows="2" class="form-control" placeholder="Введите сообщение..." required></textarea>
-                        
                         <div class="file-upload-container">
                             <button type="button" class="btn btn-file">
                                 <i class="fa fa-plus"></i> Добавить файл
                             </button>
                             <input type="file" name="file" id="file" accept="image/*,.pdf,.doc,.docx" style="display: none;">
                         </div>
-                        
                         <div class="preview-container">
                             <img id="previewImage" src="" alt="Превью изображения" style="max-width: 100px; max-height: 100px; display: none;">
                         </div>
-                        
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">{{ __('Отправить') }}</button>
                         </div>
