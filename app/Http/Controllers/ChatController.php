@@ -101,23 +101,25 @@ class ChatController extends Controller
     public function viewMessage($productId, $storeId, $userId)
     {
         $user = Auth::guard('customer')->user();
-
+    
         if (!$user) {
             return redirect()->route('login');
         }
-
+    
         $store = Store::findOrFail($storeId);
         $product = Product::findOrFail($productId);
-
+    
         // Проверяем, является ли пользователь продавцом этого товара
         $isSeller = $store->customer_id == $user->id;
-
+    
         if ($isSeller) {
             // Продавец видит переписку с конкретным покупателем
             $chats = Chat::where('ec_product_id', $productId)
                          ->where('user_id', $userId)
+                         ->orWhere('store_id', $store->id)
+                         ->orderBy('created_at', 'desc')
                          ->paginate(10);
-
+    
             return view('chat.view_message', compact('chats', 'product', 'store', 'user'));
         } else {
             return redirect()->route('chat.index', ['productId' => $productId, 'storeId' => $storeId]);
