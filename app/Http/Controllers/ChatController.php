@@ -20,111 +20,112 @@ class ChatController extends Controller
         }
         $store = Store::findOrFail($storeId);
         $product = Product::findOrFail($productId);
-
         $isSeller = $store->customer_id == $user->id;
+    
         if ($isSeller) {
             $customers = Chat::where('ec_product_id', $productId)
-                             ->select('user_id')
-                             ->distinct()
-                             ->with('user')
-                             ->get()
-                             ->map(function($customer) use ($productId, $storeId) {
-                                 $customer->messages_count = Chat::where('ec_product_id', $productId)
-                                                                 ->where('user_id', $customer->user_id)
-                                                                 ->where('store_id', $storeId)
-                                                                 ->count();
-                                 $customer->last_message = Chat::where('ec_product_id', $productId)
-                                                               ->where('user_id', $customer->user_id)
-                                                               ->where('store_id', $storeId)
-                                                               ->latest('created_at')
-                                                               ->first();
-                                 return $customer;
-                             });
+                ->select('user_id')
+                ->distinct()
+                ->with('user')
+                ->get()
+                ->map(function ($customer) use ($productId, $storeId) {
+                    $customer->messages_count = Chat::where('ec_product_id', $productId)
+                        ->where('user_id', $customer->user_id)
+                        ->where('store_id', $storeId)
+                        ->count();
+                    $customer->last_message = Chat::where('ec_product_id', $productId)
+                        ->where('user_id', $customer->user_id)
+                        ->where('store_id', $storeId)
+                        ->latest('created_at')
+                        ->first();
+                    return $customer;
+                });
             return view('chat.seller_index', compact('customers', 'product', 'store', 'user'));
         } else {
             $chats = Chat::where('ec_product_id', $productId)
-                         ->where(function ($query) use ($user, $store) {
-                             $query->where('user_id', $user->id)
-                                   ->orWhere(function($subQuery) use ($store) {
-                                       $subQuery->where('user_id', $store->customer_id)
-                                                ->where('store_id', $store->id);
-                                   });
-                         })
-                         ->paginate(10);
+                ->where(function ($query) use ($user, $store) {
+                    $query->where('user_id', $user->id)
+                        ->orWhere(function ($subQuery) use ($store) {
+                            $subQuery->where('user_id', $store->customer_id)
+                                ->where('store_id', $store->id);
+                        });
+                })
+                ->orderBy('created_at', 'desc') // Сортируем по возрастанию для последовательности
+                ->paginate(10);
+    
+            if (request()->ajax()) {
+                return view('chat.partials.messages', compact('chats'))->render();
+            }
             return view('chat.index', compact('chats', 'product', 'store', 'user'));
         }
     }
+    
 
     public function sendMessage(Request $request, $productId, $storeId, $userId = null)
     {
         $user = Auth::guard('customer')->user();
         if (!$user) {
-            return redirect()->route('login');
+            return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
+    
         $store = Store::findOrFail($storeId);
-
         $request->validate([
             'message' => 'required|string|max:1000',
             'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf,doc,docx|max:2048'
         ]);
-
+    
         $chat = new Chat();
         $chat->ec_product_id = $productId;
         $chat->message = $request->message;
         $chat->store_id = $storeId;
-        $chat->sender_id = $user->id; // добавляем sender_id
-
+        $chat->sender_id = $user->id;
+    
         if ($user->id == $store->customer_id) {
-            // Сообщение от продавца к конкретному покупателю
-            $chat->user_id = $userId;
+            if ($userId) {
+                $chat->user_id = $userId;
+            } else {
+                return response()->json(['error' => 'Необходимо указать покупателя для отправки сообщения.'], 400);
+            }
         } else {
-            // Сообщение от покупателя к продавцу
             $chat->user_id = $user->id;
         }
-
+    
         if ($request->hasFile('file')) {
             $path = $request->file('file')->store('chat_files', 'public');
             $chat->file_path = $path;
         }
-
-        Log::info('Chat before save', ['chat' => $chat]);
-
-        // Проверяем перед сохранением
+    
         if (is_null($chat->user_id)) {
-            return redirect()->back()->withErrors('User ID cannot be null.');
+            return response()->json(['error' => 'User ID cannot be null.'], 400);
         }
-
+    
         $chat->save();
-        Log::info('Chat after save', ['chat' => $chat]);
-
-        if ($user->id == $store->customer_id) {
-            // Оставаться на той же странице при отправке сообщения продавцом
-            return redirect()->route('chat.viewMessage', ['productId' => $productId, 'storeId' => $storeId, 'userId' => $userId])
-                            ->with('success', 'Message sent!');
-        } else {
-            // Оставаться на той же странице при отправке сообщения покупателем
-            return redirect()->route('chat.index', ['productId' => $productId, 'storeId' => $storeId])
-                            ->with('success', 'Message sent!');
-        }
+    
+        return response()->json(['success' => true, 'message' => $chat], 200);
     }
-
-    public function viewMessage($productId, $storeId, $userId)
+    
+    public function viewMessage(Request $request, $productId, $storeId, $userId)
     {
         $user = Auth::guard('customer')->user();
         if (!$user) {
             return redirect()->route('login');
         }
+
         $store = Store::findOrFail($storeId);
         $product = Product::findOrFail($productId);
-
         $isSeller = $store->customer_id == $user->id;
+
         if ($isSeller) {
             $chats = Chat::where('ec_product_id', $productId)
-                         ->where('store_id', $storeId)
-                         ->where('user_id', $userId)
-                         ->orderBy('created_at', 'desc')
-                         ->paginate(10);
+                ->where('store_id', $storeId)
+                ->where('user_id', $userId)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            if ($request->ajax()) {
+                return view('chat.partials.messages', compact('chats'))->render();
+            }
+
             return view('chat.view_message', compact('chats', 'product', 'store', 'user', 'userId'));
         } else {
             return redirect()->route('chat.index', ['productId' => $productId, 'storeId' => $storeId]);
