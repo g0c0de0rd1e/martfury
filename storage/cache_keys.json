@@ -128,5 +128,8 @@
         "876a095a247b966461c4079f23f9e7ae@menu_location_4f1b8d989e1df2a2afa637410a79dd8c",
         "876a095a247b966461c4079f23f9e7ae@menu_location_1e43007979d715efa055a6f7f512efa1",
         "876a095a247b966461c4079f23f9e7ae@menu_location_b1fdd8ffd4435edba84ff9255e32b626"
+    ],
+    "Botble\\Ecommerce\\Services\\HandleShippingFeeService": [
+        "66d6c800acf0bbfe034c13e9e2145ba3@c49ecd45f406b4bf2d014214b7a3d4a1"
     ]
 }
